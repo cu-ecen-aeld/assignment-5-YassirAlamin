@@ -3,10 +3,10 @@
 #Author: Siddhant Jajoo
 
 # Start SSH agent
-eval "$(ssh-agent -s)"
+#eval "$(ssh-agent -s)"
 
 # Add SSH key
-ssh-add ~/.ssh/id_ed25519
+#ssh-add ~/.ssh/id_ed25519
 
 
 source shared.sh
