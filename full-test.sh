@@ -25,7 +25,9 @@ set +e
 if [ -f conf/assignment.txt ]; then
     # This is just one example of how you could find an associated assignment
     assignment=`cat conf/assignment.txt`
+    echo "pwd:"
     pwd
+    echo "test_dir: ${test_dir}"
     ls -la ./assignment-autotest/test/${assignment}/
     if [ -f ./assignment-autotest/test/${assignment}/assignment-test.sh ]; then
         echo "Executing assignment test script"
