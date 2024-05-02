@@ -35,8 +35,11 @@ define AESD_ASSIGNMENTS_INSTALL_TARGET_CMDS
 	$(INSTALL) -m 0755 $(@D)/finder-app/finder-test.sh $(TARGET_DIR)/bin
 	echo "Installation 2 done"
 
-	$(INSTALL) -m 0755 $(AESD_ASSIGNMENTS_SRCDIR)/server/aesdsocket $(TARGET_DIR)/usr/bin/aesdsocket
-	$(INSTALL) -m 0755 $(AESD_ASSIGNMENTS_SRCDIR)/server/aesdsocket-start-stop $(TARGET_DIR)/etc/init.d/S99aesdsocket
+	$(INSTALL) -m 0755 $(@D)/server/aesdsocket $(TARGET_DIR)/usr/bin/aesdsocket
+        $(INSTALL) -m 0755 $(@D)/server/aesdsocket-start-stop $(TARGET_DIR)/etc/init.d/S99aesdsocket
+	
+	#$(INSTALL) -m 0755 $(AESD_ASSIGNMENTS_SRCDIR)/server/aesdsocket $(TARGET_DIR)/usr/bin/aesdsocket
+	#$(INSTALL) -m 0755 $(AESD_ASSIGNMENTS_SRCDIR)/server/aesdsocket-start-stop $(TARGET_DIR)/etc/init.d/S99aesdsocket
 	echo "Installation 3 done"
 endef
 
