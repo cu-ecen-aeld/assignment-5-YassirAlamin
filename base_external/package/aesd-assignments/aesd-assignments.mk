@@ -7,7 +7,7 @@
 
 #TODO: Fill up the contents below in order to reference your assignment 3 git contents
 #AESD_ASSIGNMENTS_VERSION = '5e51d06684269fb2545540a5e543095cfdd67c49' #//assignment 4 buildroot//#
-AESD_ASSIGNMENTS_VERSION = '66fa4a8e4e4d5b6196aa54f89bed9c053afded55'
+AESD_ASSIGNMENTS_VERSION = '850d239ab89991cacffbaa2fc063a41d5281d5d2'
 # Note: Be sure to reference the *ssh* repository URL here (not https) to work properly
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
@@ -18,7 +18,10 @@ AESD_ASSIGNMENTS_GIT_SUBMODULES = YES
 define AESD_ASSIGNMENTS_BUILD_CMDS
 	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/finder-app all
 	echo "cmd 1 done"
-	$(MAKE) -C $(AESD_ASSIGNMENTS_SRCDIR)/server CROSS_COMPILER=$(TARGET_CROSS) aesdsocket
+
+	$(MAKE) clean -C $(@D)/server
+	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/server
+	
 	echo "cmd 2 done"
 endef
 
@@ -34,12 +37,9 @@ define AESD_ASSIGNMENTS_INSTALL_TARGET_CMDS
 	$(INSTALL) -m 0755 $(@D)/finder-app/finder.sh $(TARGET_DIR)/bin
 	$(INSTALL) -m 0755 $(@D)/finder-app/finder-test.sh $(TARGET_DIR)/bin
 	echo "Installation 2 done"
-
-	$(INSTALL) -m 0755 $(@D)/server/aesdsocket $(TARGET_DIR)/usr/bin/aesdsocket
-        $(INSTALL) -m 0755 $(@D)/server/aesdsocket-start-stop $(TARGET_DIR)/etc/init.d/S99aesdsocket
 	
-	#$(INSTALL) -m 0755 $(AESD_ASSIGNMENTS_SRCDIR)/server/aesdsocket $(TARGET_DIR)/usr/bin/aesdsocket
-	#$(INSTALL) -m 0755 $(AESD_ASSIGNMENTS_SRCDIR)/server/aesdsocket-start-stop $(TARGET_DIR)/etc/init.d/S99aesdsocket
+	$(INSTALL) -m 0755 $(@D)/server/aesdsocket $(TARGET_DIR)/usr/bin
+        $(INSTALL) -m 0755 $(@D)/server/aesdsocket-start-stop $(TARGET_DIR)/etc/init.d/S99aesdsocket
 	echo "Installation 3 done"
 endef
 
